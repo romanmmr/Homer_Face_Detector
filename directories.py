@@ -18,7 +18,8 @@ homer_dir = os.path.join(faces_path, 'Homer')
 no_homer_dir = os.path.join(faces_path, 'No_Homer')
 
 # This is the base directory:
-base_dir = 'D:\Data Science\Projects\Homer_detector'
+# base_dir = 'D:\Data Science\Projects\Homer_detector'
+base_dir = r'C:\Users\rodri\Rodrigo\Data Science\Homer_detector'
 
 # Pycharm project directory:
 # project_dir = 'C:\\Users\\RodrigoRoman\\PycharmProjects\\Homer_Face_Detector\\Images'
@@ -55,8 +56,8 @@ test_size = int(dataset_size_per_class * test_percent)
 # print(f'Training dataset size: {train_size}')
 
 #We are randomizing the list of file names for each directory
-rand_homer_list = np.random.RandomState(0).choice(os.listdir(homer_dir), len(os.listdir(homer_dir)))
-rand_no_homer_list = np.random.RandomState(0).choice(os.listdir(no_homer_dir), len(os.listdir(no_homer_dir)))
+rand_homer_list = np.random.RandomState(0).choice(os.listdir(homer_dir), len(os.listdir(homer_dir)), replace=False)
+rand_no_homer_list = np.random.RandomState(0).choice(os.listdir(no_homer_dir), len(os.listdir(no_homer_dir)), replace=False)
 
 #Training and validation randomized lists for both directories (with and without homer)
 rand_homer_train_list = rand_homer_list[:train_size]
@@ -102,18 +103,4 @@ for (rand_homer_train_image,
     shutil.copy2(os.path.join(no_homer_dir, rand_no_homer_train_image), train_no_homer_dir)
     shutil.copy2(os.path.join(no_homer_dir, rand_no_homer_val_image), validation_no_homer_dir)
     shutil.copy2(os.path.join(no_homer_dir, rand_no_homer_test_image), test_no_homer_dir)
-
-
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
 

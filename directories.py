@@ -8,7 +8,8 @@ import shutil
 # Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
 
 # All images of the faces are here:
-faces_path = 'D:\Data Science\Projects\Homer_detector\Faces'
+# faces_path = 'D:\Data Science\Projects\Homer_detector\Faces'
+faces_path = r'C:\Users\rodri\Rodrigo\Data Science\Homer_detector\Faces'
 
 # Homer directory:
 homer_dir = os.path.join(faces_path, 'Homer')
@@ -20,7 +21,8 @@ no_homer_dir = os.path.join(faces_path, 'No_Homer')
 base_dir = 'D:\Data Science\Projects\Homer_detector'
 
 # Pycharm project directory:
-project_dir = 'C:\\Users\\RodrigoRoman\\PycharmProjects\\Homer_Face_Detector\\Images'
+# project_dir = 'C:\\Users\\RodrigoRoman\\PycharmProjects\\Homer_Face_Detector\\Images'
+project_dir = 'C:\\Users\\rodri\\PycharmProjects\\Homer_Face_Detector\\Images'
 
 # Training and validation directories will be in the Pycharm project directory
 train_dir = os.path.join(project_dir, 'train')
@@ -80,13 +82,19 @@ for directory in directories:
         # print(directory)
         os.makedirs(directory)
 
+
 # For each image in each randomized group, copy it into it's corresponding directory:
-for rand_homer_train_image, rand_homer_val_image, rand_homer_test_image, rand_no_homer_train_image, rand_no_homer_val_image, rand_no_homer_test_image in zip(rand_homer_train_list,
-                                                                                                                                                             rand_homer_val_list,
-                                                                                                                                                             rand_homer_test_list,
-                                                                                                                                                             rand_no_homer_train_list,
-                                                                                                                                                             rand_no_homer_val_list,
-                                                                                                                                                             rand_no_homer_test_list):
+for (rand_homer_train_image,
+     rand_homer_val_image,
+     rand_homer_test_image,
+     rand_no_homer_train_image,
+     rand_no_homer_val_image,
+     rand_no_homer_test_image) in zip(rand_homer_train_list,
+                                      rand_homer_val_list,
+                                      rand_homer_test_list,
+                                      rand_no_homer_train_list,
+                                      rand_no_homer_val_list,
+                                      rand_no_homer_test_list):
 
     shutil.copy2(os.path.join(homer_dir, rand_homer_train_image), train_homer_dir)
     shutil.copy2(os.path.join(homer_dir, rand_homer_val_image), validation_homer_dir)

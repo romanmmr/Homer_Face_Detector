@@ -1,6 +1,5 @@
 import numpy as np
 import os
-import shutil
 import utils
 
 # This is a sample Python script.
@@ -84,29 +83,20 @@ for directory in directories:
         # print(directory)
         os.makedirs(directory)
 
-# def copy_images_to_directory(homer_no_homer_dir, images_to_copy, directory_to_paste):
-#     for image in images_to_copy:
-#         shutil.copy2(os.path.join(homer_no_homer_dir, image), directory_to_paste)
+# We create a list (randomized lists) that contains all the available lists in the same order as the directories list
+randomized_image_lists = [rand_homer_train_list,
+                          rand_homer_val_list,
+                          rand_homer_test_list,
+                          rand_no_homer_train_list,
+                          rand_no_homer_val_list,
+                          rand_no_homer_test_list]
 
-utils.copy_images_to_directory(homer_dir, rand_homer_train_list, train_homer_dir)
+# With the elements of each randomized list and each directory we simply copy each image to its corresponding directory
+for randomized_list, directory in zip(randomized_image_lists, directories):
+    if (directory.split('\\')[-1]) == 'homer':
+        homer_no_homer_dir = homer_dir
+    else:
+        homer_no_homer_dir = no_homer_dir
 
-# For each image in each randomized group, copy it into it's corresponding directory:
-# for (rand_homer_train_image,
-#      rand_homer_val_image,
-#      rand_homer_test_image,
-#      rand_no_homer_train_image,
-#      rand_no_homer_val_image,
-#      rand_no_homer_test_image) in zip(rand_homer_train_list,
-#                                       rand_homer_val_list,
-#                                       rand_homer_test_list,
-#                                       rand_no_homer_train_list,
-#                                       rand_no_homer_val_list,
-#                                       rand_no_homer_test_list):
-#
-#     shutil.copy2(os.path.join(homer_dir, rand_homer_train_image), train_homer_dir)
-#     shutil.copy2(os.path.join(homer_dir, rand_homer_val_image), validation_homer_dir)
-#     shutil.copy2(os.path.join(homer_dir, rand_homer_test_image), test_homer_dir)
-#     shutil.copy2(os.path.join(no_homer_dir, rand_no_homer_train_image), train_no_homer_dir)
-#     shutil.copy2(os.path.join(no_homer_dir, rand_no_homer_val_image), validation_no_homer_dir)
-#     shutil.copy2(os.path.join(no_homer_dir, rand_no_homer_test_image), test_no_homer_dir)
+    utils.copy_images_to_directory(homer_no_homer_dir, randomized_list, directory)
 

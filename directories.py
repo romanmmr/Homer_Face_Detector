@@ -83,6 +83,10 @@ for directory in directories:
         # print(directory)
         os.makedirs(directory)
 
+def copy_images_to_directory(homer_no_homer_dir, images_to_copy, directory_to_paste):
+    for image in images_to_copy:
+        shutil.copy2(os.path.join(homer_no_homer_dir, image), directory_to_paste)
+
 
 # For each image in each randomized group, copy it into it's corresponding directory:
 for (rand_homer_train_image,

@@ -1,3 +1,4 @@
+import os
 import shutil
 
 def copy_images_to_directory(homer_no_homer_dir, images_to_copy, directory_to_paste):
